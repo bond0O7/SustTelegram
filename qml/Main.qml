@@ -1,6 +1,6 @@
 import Felgo 3.0
 import QtQuick 2.0
-
+import "pages"
 /*/////////////////////////////////////
   NOTE:
   Additional integration steps are needed to use Felgo Plugins, for example to add and link required libraries for Android and iOS.
@@ -21,5 +21,5 @@ App {
     //licenseKey: "<generate one from https://felgo.com/licenseKey>"
 
     // app initialization
-    ChatPage{}
+    AuthorizationPage{}
 }
