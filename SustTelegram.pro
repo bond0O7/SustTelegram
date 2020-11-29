@@ -1,6 +1,6 @@
 # allows to add DEPLOYMENTFOLDERS and links to the Felgo library and QtCreator auto-completion
 CONFIG += felgo telegram
-
+CONFIG += c++latest
 # uncomment this line to add the Live Client Module and use live reloading with your custom C++ code
 # for the remaining steps to build a custom Live Code Reload app see here: https://felgo.com/custom-code-reload-app/
 # CONFIG += felgo-live
@@ -60,8 +60,14 @@ macx {
 }
 
 DISTFILES += \
-    qml/ChatPage.qml \
-    qml/MainPage.qml
+    public_key \
+    public_key.txt \
+    qml/AuthorizationPage.qml \
+    qml/pages/ChatPage.qml \
+    qml/pages/MainPage.qml
 
 INCLUDEPATH += /opt/Qt/5.15.0/gcc_64/include
 LIBS += -L /opt/Qt/5.15.0/gcc_64/lib/ -lTelegramQt5Core -l TelegramQt5Qml
+
+HEADERS += \
+    TelegramApi/GlobalTelegramConstants.hpp
