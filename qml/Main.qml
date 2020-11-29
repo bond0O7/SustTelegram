@@ -21,5 +21,5 @@ App {
     //licenseKey: "<generate one from https://felgo.com/licenseKey>"
 
     // app initialization
-    AuthorizationPage{}
+    SignUpPage{}
 }
