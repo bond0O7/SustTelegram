@@ -8,9 +8,11 @@
 int main(int argc, char *argv[]) {
 
   QApplication app(argc, argv);
+  app.setApplicationName("SustTelegram");
+  app.setApplicationVersion("1.0.0");
+  app.setApplicationDisplayName("Sust Telegram");
 
   FelgoApplication felgo;
-
   // Use platform-specific fonts instead of Felgo's default font
   felgo.setPreservePlatformFonts(true);
 
