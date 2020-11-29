@@ -62,9 +62,10 @@ macx {
 DISTFILES += \
     public_key \
     public_key.txt \
-    qml/AuthorizationPage.qml \
+    qml/pages/AuthorizationPage.qml \
     qml/pages/ChatPage.qml \
-    qml/pages/MainPage.qml
+    qml/pages/MainPage.qml \
+    qml/pages/SignUpPage.qml
 
 INCLUDEPATH += /opt/Qt/5.15.0/gcc_64/include
 LIBS += -L /opt/Qt/5.15.0/gcc_64/lib/ -lTelegramQt5Core -l TelegramQt5Qml
