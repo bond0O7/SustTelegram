@@ -1,12 +1,14 @@
 #ifndef QAUTHSTATEFACTORY_HPP
 #define QAUTHSTATEFACTORY_HPP
 
+#include <QJsonObject>
+#include <QObject>
 
-class QAuthStateFactory
-{
-    Q_OBJECT
+class QTdAuthState;
+class QAuthStateFactory {
 public:
-    QAuthStateFactory();
+  static QTdAuthState *create(const QJsonObject &json,
+                              QObject *parent = nullptr);
 };
 
 #endif // QAUTHSTATEFACTORY_HPP
