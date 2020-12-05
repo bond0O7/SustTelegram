@@ -1,11 +1,23 @@
 #include "QTdDocument.hpp"
 
-QTdDocument::QTdDocument(QObject *parent) : QTdObject(parent) {}
+QTdDocument::QTdDocument(QObject *parent) : QTdObject(parent) {
+  setType(Type::Document);
+}
 
-QString QTdDocument::fileName() const {}
+void QTdDocument::unmarshallJson(const QJsonObject &json) {
+  mFileName = json["filename"].toString();
+  mMimeType = json["mime_type"].toString();
+  if (json.contains("thumnail")) {
+    mThumbnail->unmarshallJson(json["thumbnail"].toObject());
+  }
+  mDocument->unmarshallJson(json["document"].toObject());
+  emit documentChanged();
+}
 
-QString QTdDocument::mimeType() const {}
+QString QTdDocument::fileName() const { return mFileName; }
 
-QTdPhotoSize *QTdDocument::thumbnail() const {}
+QString QTdDocument::mimeType() const { return mMimeType; }
 
-QTdFile *QTdDocument::document() const {}
+QTdPhotoSize *QTdDocument::thumbnail() const { return mThumbnail.get(); }
+
+QTdFile *QTdDocument::document() const { return mDocument.get(); }
