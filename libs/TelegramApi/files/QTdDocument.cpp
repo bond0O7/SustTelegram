@@ -1,6 +1,3 @@
 #include "QTdDocument.hpp"
 
-QTdDocument::QTdDocument()
-{
-
-}
+QTdDocument::QTdDocument(QObject *parent) : QTdObject(parent) {}

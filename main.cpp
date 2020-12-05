@@ -1,6 +1,10 @@
+#include "TelegramApi/GlobalTelegramConstants.hpp"
 #include <FelgoApplication>
 #include <QApplication>
+#include <QDebug>
 #include <QQmlApplicationEngine>
+#include <future>
+
 // uncomment this line to add the Live Client Module and use live reloading with
 // your custom C++ code
 //#include <FelgoLiveClient>
@@ -17,6 +21,7 @@ int main(int argc, char *argv[]) {
   felgo.setPreservePlatformFonts(true);
 
   QQmlApplicationEngine engine;
+
   felgo.initialize(&engine);
 
   // Set an optional license key from project file

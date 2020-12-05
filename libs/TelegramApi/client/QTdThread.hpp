@@ -1,16 +1,24 @@
 #ifndef QTDTHREAD_HPP
 #define QTDTHREAD_HPP
 
-#include <QObject>
+#include "QTdHandle.hpp"
+#include <QSharedPointer>
 
-class QTdThread : public QObject
-{
-    Q_OBJECT
+class QTdWorker : public QObject {
+  Q_DISABLE_COPY(QTdWorker)
+  Q_OBJECT
 public:
-    explicit QTdThread(QObject *parent = nullptr);
+  explicit QTdWorker(QObject *parent = nullptr);
+  ~QTdWorker();
 
 signals:
+  void recv(const QJsonObject &data);
 
+public slots:
+  void run();
+
+private:
+  QSharedPointer<Handle> mTdlib;
 };
 
 #endif // QTDTHREAD_HPP

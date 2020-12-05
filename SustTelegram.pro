@@ -1,6 +1,7 @@
 # allows to add DEPLOYMENTFOLDERS and links to the Felgo library and QtCreator auto-completion
-CONFIG += felgo telegram
+CONFIG += felgo
 CONFIG += c++latest
+QT += concurrent
 # uncomment this line to add the Live Client Module and use live reloading with your custom C++ code
 # for the remaining steps to build a custom Live Code Reload app see here: https://felgo.com/custom-code-reload-app/
 # CONFIG += felgo-live
@@ -38,7 +39,30 @@ DEPLOYMENTFOLDERS += assetsFolder
 
 
 # The .cpp file which was generated for your project. Feel free to hack it.
-SOURCES += main.cpp
+SOURCES += main.cpp \ \
+    libs/TelegramApi/auth/QTdAuthCode.cpp \
+    libs/TelegramApi/auth/QTdAuthManager.cpp \
+    libs/TelegramApi/auth/QTdAuthParam.cpp \
+    libs/TelegramApi/auth/QTdAuthState.cpp \
+    libs/TelegramApi/auth/QTdAuthStateFactory.cpp \
+    libs/TelegramApi/call/QTdCallDiscardReason.cpp \
+    libs/TelegramApi/client/QTdClient.cpp \
+    libs/TelegramApi/client/QTdHandle.cpp \
+    libs/TelegramApi/client/QTdThread.cpp \
+    libs/TelegramApi/common/QAbstractInt32Id.cpp \
+    libs/TelegramApi/common/QAbstractInt53Id.cpp \
+    libs/TelegramApi/common/QAbstractInt64Id.cpp \
+    libs/TelegramApi/common/QAbstractTdObject.cpp \
+    libs/TelegramApi/common/QTdInt.cpp \
+    libs/TelegramApi/common/QTdRequest.cpp \
+    libs/TelegramApi/common/QTdResponse.cpp \
+    libs/TelegramApi/connections/QTdConnectionState.cpp \
+    libs/TelegramApi/connections/QTdConnectionStateFactory.cpp \
+    libs/TelegramApi/files/QTdDocument.cpp \
+    libs/TelegramApi/files/QTdFile.cpp \
+    libs/TelegramApi/files/QTdLocalFile.cpp \
+    libs/TelegramApi/files/QTdPhotoSize.cpp \
+    libs/TelegramApi/files/QTdRemoteFile.cpp
 
 
 android {
@@ -59,6 +83,7 @@ macx {
     ICON = macx/app_icon.icns
 }
 
+
 DISTFILES += \
     public_key \
     public_key.txt \
@@ -67,8 +92,31 @@ DISTFILES += \
     qml/pages/MainPage.qml \
     qml/pages/SignUpPage.qml
 
-INCLUDEPATH += /opt/Qt/5.15.0/gcc_64/include
-LIBS += -L /opt/Qt/5.15.0/gcc_64/lib/ -lTelegramQt5Core -l TelegramQt5Qml
-
 HEADERS += \
-    TelegramApi/GlobalTelegramConstants.hpp
+    libs/TelegramApi/GlobalTelegramConstants.hpp \ \
+    libs/TelegramApi/auth/QTdAuthCode.hpp \
+    libs/TelegramApi/auth/QTdAuthManager.hpp \
+    libs/TelegramApi/auth/QTdAuthParam.hpp \
+    libs/TelegramApi/auth/QTdAuthState.hpp \
+    libs/TelegramApi/auth/QTdAuthStateFactory.hpp \
+    libs/TelegramApi/call/QTdCallDiscardReason.hpp \
+    libs/TelegramApi/client/QTdClient.hpp \
+    libs/TelegramApi/client/QTdHandle.hpp \
+    libs/TelegramApi/client/QTdThread.hpp \
+    libs/TelegramApi/common/QAbstractInt32Id.hpp \
+    libs/TelegramApi/common/QAbstractInt53Id.hpp \
+    libs/TelegramApi/common/QAbstractInt64Id.hpp \
+    libs/TelegramApi/common/QAbstractTdObject.hpp \
+    libs/TelegramApi/common/QTdInt.hpp \
+    libs/TelegramApi/common/QTdRequest.hpp \
+    libs/TelegramApi/common/QTdResponse.hpp \
+    libs/TelegramApi/connections/QTdConnectionState.hpp \
+    libs/TelegramApi/connections/QTdConnectionStateFactory.hpp \
+    libs/TelegramApi/files/QTdDocument.hpp \
+    libs/TelegramApi/files/QTdFile.hpp \
+    libs/TelegramApi/files/QTdLocalFile.hpp \
+    libs/TelegramApi/files/QTdPhotoSize.hpp \
+    libs/TelegramApi/files/QTdRemoteFile.hpp
+
+LIBS +=  -ltdapi -ltdcore -ltdclient -ltdjson_private -ltdjson -ltdjson_static -lssl -lcrypto
+

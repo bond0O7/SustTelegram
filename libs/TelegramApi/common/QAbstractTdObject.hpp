@@ -1,16 +1,185 @@
 #ifndef QTDOBJECT_HPP
 #define QTDOBJECT_HPP
 
+#include <QJsonObject>
 #include <QObject>
 
-class QTdObject : public QObject
-{
-    Q_OBJECT
+class QTdObject : public QObject {
+  Q_OBJECT
+  Q_DISABLE_COPY(QTdObject)
+  Q_PROPERTY(Type type READ type NOTIFY typeChanged)
 public:
-    explicit QTdObject(QObject *parent = nullptr);
+  explicit QTdObject(QObject *parent = nullptr);
+
+public:
+  enum class Type {
+    Unknown = -1,
+    Animation,
+    Audio,
+    AuthenticationCodeInfo,
+    AuthenticationCodeTypeSms,
+    AuthenticationCodeTypeTelegramMessage,
+    AuthenticationCodeTypeCall,
+    AuthenticationCodeTypeFlashCall,
+    AuthorizationStateClosed,
+    AuthorizationStateClosing,
+    AuthorizationStateLogginOut,
+    AuthorizationStateReady,
+    AuthorizationStateWaitCode,
+    AuthorizationStateWaitEncryptionKey,
+    AuthorizationStateWaitRegisteration,
+    AuthorizationStateWaitPassword,
+    AuthorizationStateWaitPhoneNumber,
+    AuthorizationStateWaitTdlibParameters,
+    Call,
+    CallDiscardReason,
+    CallDiscardReasonDeclined,
+    CallDiscardReasonDisconnected,
+    CallDiscardReasonEmpty,
+    CallDiscardReasonHangUp,
+    CallDiscardReasonMissed,
+    Chat,
+    ChatActionCancel,
+    ChatActionChoosingContact,
+    ChatActionChoosingLocation,
+    ChatActionRecordingVideo,
+    ChatActionRecordingVideoNote,
+    ChatActionRecordingVoiceNote,
+    ChatActionStartPlayingGame,
+    ChatActionTyping,
+    ChatActionUploadingDocument,
+    ChatActionUploadingPhoto,
+    ChatActionUploadingVideo,
+    ChatActionUploadingVideoNote,
+    ChatActionUploadingVoiceNote,
+    ChatActionUnknown,
+    ChatMember,
+    ChatMemberStatusAdmin,
+    ChatMemberStatusBanned,
+    ChatMemberStatusCreator,
+    ChatMemberStatusLeft,
+    ChatMemberStatusMember,
+    ChatPhoto,
+    ChatTypePrivate,
+    ChatTypeBasicGroup,
+    ChatTypeSuperGroup,
+    ChatTypeSecret,
+    ConnectionStateConnecting,
+    ConnectionStateToProxy,
+    ConnectionStateReady,
+    ConnectionStateUpdating,
+    ConnectionStateWaitForNetwork,
+    Contact,
+    Document,
+    File,
+    FormattedText,
+    InputMessage,
+    LinkStateIsContact,
+    LinkStateKnowsPhoneNumber,
+    LinkStateNone,
+    LocalFile,
+    Message,
+    MessageAction,
+    MessageAnimation,
+    MessageUnreadLabel,
+    MessageAudio,
+    MessageBasicGroupChatCreate,
+    MessageSuperGroupChatCreate,
+    MessageCall,
+    MessageChatAddMember,
+    MessageChatChangePhoto,
+    MessageChatChangeTitle,
+    MessageChatDeleteMember,
+    MessageChatDeletePhoto,
+    MessageChatJoinByLink,
+    MessageChatSetTTl,
+    MessageChatUpgradeFrom,
+    MessageChatUpgradeTo,
+    MessageCustomServiceAction,
+    MessageContactRegistered,
+    MessageContact,
+    MessageDate,
+    MessageDocument,
+    MessageHidden,
+    MessageLocation,
+    MessagePinMessage,
+    MessageScreenShotTaken,
+    MessageText,
+    MessagePhoto,
+    MessageSticker,
+    MessageVideo,
+    MessageVideoNote,
+    MessageVoiceNote,
+    MessageSendingStateFailed,
+    MessageSendingStatePending,
+    MessageUnsupported,
+    NetworkTypeMobile,
+    NetworkTypeMobileRoaming,
+    NetworkTypeNone,
+    NetworkTypeOther,
+    NetworkTypeWifi,
+    NotificationSettings,
+    Photo,
+    PhotoSize,
+    ProfilePhoto,
+    RemoteFile,
+    SecretChatStateClosed,
+    Sticker,
+    StickerSetInfo,
+    TextEntity,
+    TextEntityTypeMention,
+    TextEntityTypeHashtag,
+    TextEntityTypeBotCommand,
+    TextEntityTypeURL,
+    TextEntityTypeEmailAddress,
+    TextEntityTypeBold,
+    TextEntityTypeItalic,
+    TextEntityTypeCode,
+    TextEntityTypePre,
+    TextEntityTypePreCode,
+    TextEntityTypeTextURL,
+    TextEntityTypeMentionName,
+    TextEntityTypePhoneNumber,
+    TextEntityTypeCashTag,
+    TextEntityTypeStrikeThrough,
+    TextEntityTypeUnderline,
+    User,
+    UserFullInfo,
+    UserStatusEmpty,
+    UserStatusLastMonth,
+    UserStatusLastWeek,
+    UserStatusOffline,
+    UserStatusOnline,
+    UserStatusRecently,
+    UserTypeBot,
+    UserTypeDeleted,
+    UserTypeUnknown,
+    Video,
+    VideoNote,
+    VoiceNote,
+    WebPage,
+    ReplyMarkupForceReply,
+    ReplyMarkupInlineKeyboard,
+    ReplyMarkupRemoveKeyboard,
+    ReplyMarkupShowKeyboard,
+    MessageForwardOriginalChannel,
+    MessageForwardOriginalHiddenUser,
+    MessageForwardOriginUser,
+  };
+  Q_ENUM(Type)
+
+  Type type() const noexcept;
+  QString typeString() const;
+  virtual void unmarshallJson(const QJsonObject &json);
+  virtual QJsonObject marshallJson();
 
 signals:
+  void typeChanged(Type);
 
+protected:
+  void setType(const Type type);
+  Type mType;
+  QString mTypeString;
 };
 
 #endif // QTDOBJECT_HPP

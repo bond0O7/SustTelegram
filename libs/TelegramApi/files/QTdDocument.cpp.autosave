@@ -1,0 +1,28 @@
+#include "QTdDocument.hpp"
+
+QTdDocument::QTdDocument(QObject *parent) : QTdObject(parent) {}
+
+QString QTdDocument::fileName() const
+{
+    return mFileName;
+}
+
+QString QTdDocument::mimeType() const
+{
+    return mMimeType;
+}
+
+QTdPhotoSize *QTdDocument::thumbnail() const
+{
+    
+}
+
+QTdFile *QTdDocument::document() const
+{
+    
+}
+
+
+void QTdDocument::unmarshallJson(const QJsonObject &json)
+{
+}

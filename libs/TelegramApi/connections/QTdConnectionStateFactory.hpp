@@ -1,14 +1,12 @@
 #ifndef QTDCONNECTIONSTATEFACTORY_HPP
 #define QTDCONNECTIONSTATEFACTORY_HPP
+#include "QTdConnectionState.hpp"
 
+#include <QJsonObject>
+#include <QObject>
 
-class QTdConnectionStateFactory : public QObject
-{
-public:
-    explicit QTdConnectionStateFactory(QObject *parent = nullptr);
-
-signals:
-
+class QTdConnectionStateFactory {
+  static QTdConnectionState *create(const QJsonObject &json, QObject *parent);
 };
 
 #endif // QTDCONNECTIONSTATEFACTORY_HPP
